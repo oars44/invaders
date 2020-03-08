@@ -40,9 +40,9 @@ public class enemy_control : MonoBehaviour
             alien.speed = maxSpeed - (count * 4);
         }
 
-        if (count == 0)
+        if (count == 0 && !dead)
         {
-            spawn();
+            //spawn();
         }
 
         if (dead)
@@ -54,7 +54,7 @@ public class enemy_control : MonoBehaviour
                 Destroy(getCount[i]);
             }
 
-            Instantiate(tank, new Vector3(45, -1.5f, -25), Quaternion.identity);
+            //Instantiate(tank, new Vector3(45, -1.5f, -25), Quaternion.identity);
             dead = false;
         }
     }

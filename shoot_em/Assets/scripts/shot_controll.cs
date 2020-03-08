@@ -43,7 +43,7 @@ public class shot_controll : MonoBehaviour
             if (!enemy)
             {
                 scores.score += coll.gameObject.GetComponent<alien_control>().value;
-                Destroy(coll.gameObject);
+                coll.gameObject.GetComponent<alien_control>().hit = true;
                 Destroy(gameObject);
             }
         }

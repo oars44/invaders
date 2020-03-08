@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class tank_control : MonoBehaviour
 {
+    public Animator anim;
     public float speed = 5;
     public GameObject bullet;
     public Transform barrel;
     enemy_control control;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject manager = GameObject.Find("enemy_manager");
         control = manager.GetComponent<enemy_control>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class tank_control : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            anim.SetTrigger("shoot");
             Instantiate(bullet, barrel.position, Quaternion.identity);
         }
     }
@@ -48,7 +52,8 @@ public class tank_control : MonoBehaviour
         if (col.gameObject.tag == "enemy")
         {
             control.dead = true;
-            Destroy(gameObject);
+            anim.SetTrigger("dead");
+            Destroy(gameObject, .5f);
         }
     }
 }
